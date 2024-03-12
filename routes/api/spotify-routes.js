@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { getSpotifyAccessToken, getAlbum } = require('spotify-node-wrapper');
-const baseURL = "https://api.spotify.com";
+const baseURL = "https://api.spotify.com/v1/me/search?market=us&q=";
 
 
 router.get('/', async (res, req) => {
@@ -10,7 +10,7 @@ router.get('/', async (res, req) => {
 
     const newSearch = await fetch(`${baseURL}${searchParams}`, {
         method: 'GET',
-        headers: { 'Authorization': 'Bearer' + accessToken },
+        headers: { 'Authorization': 'Bearer ' + accessToken },
     });
 
     res.json(newSearch);
@@ -19,3 +19,4 @@ router.get('/', async (res, req) => {
     }
 });
 
+module.exports = router;
