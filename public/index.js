@@ -41,4 +41,5 @@ async function search(searchQuery) {
       searchResults.append(email);
       searchResults.append(hr);
     });
-  }
+  };
+  
