@@ -1,4 +1,5 @@
 // Need button functionality for searches
+
 // Search button
 // checkboxes for type - artist, track, album, etc.
 
@@ -31,3 +32,41 @@ async function searchSpotify() {
     console.log(err);
   }
 }
+
+
+const searchBox = document.getElementById('searchBox');
+const searchResults = document.getElementById('searchResults');
+
+async function search(searchQuery) {
+    //const endpoint = `https://jsonplaceholder.typicode.com/posts/${searchQuery}/comments`;
+  
+    const response = await fetch(endpoint);
+  
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+  
+    const json = await response.json();
+    return json;
+  };
+
+  async function renderResults(text) {
+    const newData = await search(text);
+  
+    searchResults.innerHTML = '';
+  
+    newData.forEach((comment) => {
+      const body = document.createElement('h3');
+      const email = document.createElement('p');
+      const hr = document.createElement('hr');
+  
+      body.textContent = comment.body;
+      email.textContent = comment.email;
+  
+      searchResults.append(body);
+      searchResults.append(email);
+      searchResults.append(hr);
+    });
+  };
+  
+
