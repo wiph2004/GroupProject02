@@ -1,4 +1,4 @@
-const sequelize = require("../config/connection");
+const sequelize = require("../config/connections");
 const { Category, Music, Concert } = require("../models");
 
 const musicData = require("./music-seeds.json");
