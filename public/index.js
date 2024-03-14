@@ -24,6 +24,7 @@ async function searchSpotify() {
     query: document.getElementById("query").value,
     type: document.getElementById("type"),
   };
+  console.log(search);
   try {
     const response = await fetch("/spotify", {
       method: "POST",
@@ -33,6 +34,7 @@ async function searchSpotify() {
       body: JSON.stringify({ query: search }),
     });
     const data = await response.json();
+    console.log(data);
 
     const displayElement = document.getElementById("results");
     displayElement.innerHTML =
@@ -41,30 +43,6 @@ async function searchSpotify() {
     console.log(err);
   }
 };
-
-async function searchSpotify() {
-  const search = {
-    query: document.getElementById("query").value,
-    type: document.getElementById("type"),
-  };
-  try {
-    const response = await fetch("/spotify", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ query: search }),
-    });
-    const data = await response.json();
-
-    const displayElement = document.getElementById("results");
-    displayElement.innerHTML =
-      "<pre>" + JSON.stringify(data, null, 2) + "<pre>";
-  } catch (err) {
-    console.log(err);
-  }
-}
-
 
 const searchBox = document.getElementById('searchBox');
 const searchResults = document.getElementById('searchResults');

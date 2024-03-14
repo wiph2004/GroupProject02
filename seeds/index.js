@@ -23,7 +23,6 @@ const seedDatabase = async () => {
     returning: true,
   });
 
-  process.exit(0);
 };
 
 seedDatabase();
