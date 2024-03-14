@@ -1,0 +1,19 @@
+h1{
+    background-color: darkorange;
+    font-size: 100%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 100;
+}
+body{
+    background-image: url(Soon.jpg);
+    background-size: 1100px;
+    background-attachment: fixed;
+}
+title{
+    color: darkorange;
+}
+footer{
+    position:absolute;
+    bottom: 10px;
+    width: 50%;
+}
