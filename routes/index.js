@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const spotifyRoutes = require('./spotify-routes');
-const concertRoutes = require('./concert-routes');
+const spotifyRoutes = require('./api/spotify-routes');
+const concertRoutes = require('./api/concert-routes');
 
 router.use('/spotify', spotifyRoutes);
 router.use('/concert', concertRoutes);

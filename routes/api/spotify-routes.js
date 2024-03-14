@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getSpotifyAccessToken, getAlbum } = require('spotify-node-wrapper');
+const spotifyNodeWrapper = import('spotify-node-wrapper');
 const baseURL = "https://api.spotify.com/v1/me/search?market=us&q=";
 
 const spotifyApi = {
@@ -9,8 +9,11 @@ const spotifyApi = {
 };
 
 router.get('/', async (req, res) => {
+
+    console.log("spotifyNodeWrapper", spotifyNodeWrapper);
+
     try {
-    const accessToken = await getSpotifyAccessToken(spotifyApi);
+    const accessToken = await spotifyNodeWrapper.getSpotifyAccessToken(spotifyApi);
     //.then(token => console.log("AccessToken: " + accessToken));
 
     const searchParams = req.body;
