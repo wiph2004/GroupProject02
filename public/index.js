@@ -8,16 +8,18 @@
 //track seeds
 //all of these will allow us to recommend alternatives after a search
 //all searches need a type, we'll get a 400 error if they don't
-async function searchSpotify(event) {
-  console.log("button pressed");
+const searchButton = document.querySelector('.search-button');
+const queryInput = document.getElementById('query');
 
+
+async function searchSpotify(event) {
   event.preventDefault();
 
   const search = {
     query: document.getElementById("query").value.trim(),
     type: "artist", //document.getElementById("type"),
   };
-  
+
   console.log(search);
   try {
     const response = await fetch("/spotify", {
@@ -32,11 +34,11 @@ async function searchSpotify(event) {
 
     const displayElement = document.getElementById("results");
     displayElement.innerHTML =
-      "<pre>" + JSON.stringify(data, null, 2) + "<pre>";
+      "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
   } catch (err) {
     console.log(err);
   }
-}
+};
 
 const searchBox = document.getElementById("searchBox");
 const searchResults = document.getElementById("searchResults");
@@ -74,6 +76,12 @@ async function renderResults(text) {
   });
 }
 
-document
-  .querySelector("search-button")
-  .addEventListener("submit", searchSpotify);
+searchButton.addEventListener("click", function(event) {
+  searchSpotify(event);
+});
+
+queryInput.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+      searchSpotify(event);
+  }
+});
