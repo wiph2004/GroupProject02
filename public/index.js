@@ -27,14 +27,14 @@ async function searchSpotify(event) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ query: search }),
+      body: JSON.stringify({ search }),
     });
     const data = await response.json();
     console.log(data);
 
     const displayElement = document.getElementById("results");
     displayElement.innerHTML =
-      "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
+      "<pre>" + data.artists.items[0].name + "</pre>";
   } catch (err) {
     console.log(err);
   }
