@@ -9,7 +9,7 @@ const sequelize = require('./config/connections');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
-app.use('/api', apiRouter);
+app.use('/api', apiRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
