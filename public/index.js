@@ -10,14 +10,18 @@
 //all searches need a type, we'll get a 400 error if they don't
 const searchButton = document.querySelector('.search-button');
 const queryInput = document.getElementById('query');
-
+let checkedBoxes = [];
 
 async function searchSpotify(event) {
   event.preventDefault();
 
+  checkedBoxes = [];
+  checkedBoxes = getCheckedTypes();
+  console.log("Checked boxes: " + checkedBoxes);
+
   const search = {
     query: document.getElementById("query").value.trim(),
-    type: "artist", //document.getElementById("type"),
+    type: checkedBoxes,
   };
 
   console.log(search);
@@ -38,6 +42,17 @@ async function searchSpotify(event) {
   } catch (err) {
     console.log(err);
   }
+};
+
+function getCheckedTypes() {
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+  checkboxes.forEach((checkbox) => {
+      if (checkbox.checked) {
+          checkedBoxes.push(checkbox.name);
+      }
+  });
+  return checkedBoxes;
 };
 
 const searchBox = document.getElementById("searchBox");
