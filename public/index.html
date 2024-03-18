@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Find Your Vibe</title>
     <script src="./ticketmasterClient.js" defer></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <script src="./js/index.js"></script> 
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script> 
     <link rel="stylesheet" href="./style.css">
 
     <style>
@@ -67,15 +66,42 @@
         </p>
         <p>Lets Find It</p>
     
+        <input type="checkbox" id="albumbox" name="album" placeholder="Album">
+        <label id="albumbox" for="albumbox">Album</label>
+        <input type="checkbox" id="artistbox" checked name="artist" placeholder="Artist">
+        <label id="artistbox" for="artistbox">Artist</label>
+        <input type="checkbox" id="trackbox" name="track" placeholder="Track">
+        <label id="trackbox" for="trackbox">Track</label>
+        <input type="checkbox" id="showbox" name="show" placeholder="Show">
+        <label id="showbox" for="showbox">Show</label>
+        <input type="checkbox" id="episodebox" name="episode" placeholder="Episode">
+        <label id="episodebox" for="episodebox">Episode</label>
+        <input type="checkbox" id="audiobox" name="audiobook" placeholder="audiobook">
+        <label id="audiobox" for="audiobox">Audiobook</label>
         <div id="event-details">
           <h2>Event Information</h2>
-          <p>Name:<span id="event-name"></span></p>
-          <p>Date:<span id="event-date"></span></p>
+          <div>
+              <label for="event-name">Event Name:</label>
+              <span id="event-name"></span>
+          </div>
+          <div>
+              <label for="event-date">Event Date:</label>
+              <span id="event-date"></span>
+          </div>
+          <div>
+              <label for="event-time">Event Time:</label>
+              <span id="event-time"></span>
+          </div>
+          <div>
+              <label for="event-location">Event Location:</label>
+              <span id="event-location"></span>
+          </div>
       </div>
+      
       <div id="results">
         <!-- Search results will be displayed here -->
       </div>
-        <!-- Checkout button -->
+      
         
 
     </main>
@@ -83,6 +109,6 @@
       <p>&copy; 2024 Find Your Vibe</p>
       <div class="footer">Footer content</div>
     </footer>
-
+    <script src="js/index.js"></script>
   </body>
 </html>

@@ -5,6 +5,9 @@ h1{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: 100;
 }
+h2{
+    color: white;
+}
 body{
     background-image: url(Soon.jpg);
     background-size: 1100px;
@@ -24,4 +27,13 @@ z-index: 10;
 }
 p{
     width: fit-content;
+    position:absolute;
+    bottom: 10px;
+    width: 50%;
+}
+#artistbox, #albumbox, #trackbox, #episodebox, #audiobox, #showbox{
+    color: white;
+}
+#results{
+    color: white;
 }

@@ -1,14 +1,4 @@
-// Need button functionality for searches
-// Search button
-// checkboxes for type - artist, track, album, etc.
-
-//Under the hood
-//genre seeds
-//album seeds
-//track seeds
-//all of these will allow us to recommend alternatives after a search
-//all searches need a type, we'll get a 400 error if they don't
-const searchButton = document.querySelector('.search-button');
+const searchBtn = document.querySelector('.search-button');
 const queryInput = document.getElementById('query');
 let checkedBoxes = [];
 
@@ -35,22 +25,22 @@ async function searchSpotify(event) {
     });
     const data = await response.json();
     console.log(data);
-    const responseData = Object.values(data);
-    console.log("Response Data " + responseData);
-    const newData = parseData(responseData);
-    const newArray = newData();
+    const newData = parseData([data]);
+    console.log("new Data ", newData);
 
-    // const alternates = getAlternates(data);
-    // const responseAlt = await fetch("/spotify-alternate", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ alternates }),
-    // });
-    // const newAlternates = await responseAlt.json();
+    const alternates = getAlternates(data);
+    console.log("Found Id", alternates);
+    const responseAlt = await fetch("/spotify-alternate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ alternates }),
+    });
+    const newAlternates = await responseAlt.json();
+    console.log("Alternates ", newAlternates);
     
-    finalData = newArray;//.push(newAlternates);
+    finalData = newData;//.push(newAlternates);
 
     const displayElement = document.getElementById("results");
     displayElement.innerHTML =
@@ -72,12 +62,12 @@ function getCheckedTypes() {
 };
 
 function getAlternates(data) {
-  const artists = data.artists.items[0];
-  const albums = data.albums.items[0];
-  const tracks = data.tracks.items[0];
-  const audiobooks = data.audiobooks.items[0];
-  const shows = data.shows.items[0];
-  const episodes = data.episodes.items[0];
+  const artists = data.artists ? data.artists.items[0] : {};
+  const albums = data.albums ? data.albums.items[0] : {};
+  const tracks = data.tracks ? data.tracks.items[0] : {};
+  const audiobooks = data.audiobooks ? data.audiobooks.items[0] : {};
+  const shows = data.shows ? data.shows.items[0] : {};
+  const episodes = data.episodes ? data.episodes.items[0] : {};
 
   const allData = [artists, albums, tracks, audiobooks, shows, episodes];
 
@@ -85,22 +75,25 @@ function getAlternates(data) {
 
   for (let i = 0; i < allData.length; i++) {
     const currentArray = allData[i];
-    if(currentArray.length > 0 && currentArray[0].id !== undefined){
-      foundId = currentArray[0].id
+    console.log("current array", currentArray);
+    if(currentArray.id !== undefined){
+      foundId = currentArray.id
     }
   }
+  
   return foundId;
 }
 
 function parseData(data){
-  return function() {
+  // return function() {
   const resultArray = [];
 
   data.forEach(dataItem => {
     if (dataItem.artists) {
       const parsedArtists = [];
       let count = 0;
-    dataItem.artists.forEach(artists => {
+    // dataItem.artists.forEach(artists => {
+      const artists = dataItem.artists
         if (count < 5 && artists.items) {
           artists.items.forEach(items => {
             if (count < 5 && items.name){
@@ -109,9 +102,9 @@ function parseData(data){
             };
           });
         };
-      });
+      // });
       resultArray.push(parsedArtists);
-    };
+    }
     
     if (dataItem.albums) {
       const parsedAlbums = [];
@@ -194,11 +187,11 @@ function parseData(data){
   });
   console.log("resultArray " + resultArray);
   return resultArray;
- };
+//  };
 }
 
-const searchBox = document.getElementById("searchBox");
-const searchResults = document.getElementById("searchResults");
+// const searchBox = document.getElementById("searchBox");
+// const searchResults = document.getElementById("searchResults");
 
 async function search(searchQuery) {
   event.preventDefault();
@@ -233,7 +226,7 @@ async function renderResults(text) {
   });
 }
 
-searchButton.addEventListener("click", function(event) {
+searchBtn.addEventListener("click", function(event) {
   searchSpotify(event);
 });
 
