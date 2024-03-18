@@ -21,6 +21,8 @@ footer{
   bottom: 0; 
 left: 0; 
 z-index: 10;
+width: 300px;
+  height: 100px;
 }
 .checkbox_item {
     display: inline-block
@@ -35,5 +37,8 @@ p{
     color: white;
 }
 #results{
+    color: white;
+}
+label{
     color: white;
 }
