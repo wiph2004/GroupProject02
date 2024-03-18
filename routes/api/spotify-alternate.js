@@ -2,16 +2,20 @@ const router = require("express").Router();
 const spotifyNodeWrapper = import("spotify-node-wrapper");
 const baseURL = "https://api.spotify.com/v1/artists/";
 const cabooseURL = "/related-artists";
-const { accessToken } = require('./spotify-routes');
+const { accessToken } = require("../../utils/helpers");
+
+
+console.log("Access Token ", accessToken);
 
 router.post("/", async (req, res) => {
   try {
     const searchParams = req.body;
+    const search = searchParams.alternates;
     console.log("SEARCH PARAMS", searchParams);
     // const search = searchParams.search;
     // const query = encodeURIComponent(search.query);
 
-    const requestUrl = `${baseURL}${searchParams.id}${cabooseURL}`;
+    const requestUrl = `${baseURL}${search}${cabooseURL}`;
     console.log("REQUEST URL:", requestUrl);
     const response = await fetch(requestUrl, {
       method: "GET",
@@ -27,6 +31,7 @@ router.post("/", async (req, res) => {
     res.json(data);
   } catch (err) {
     console.log(err);
+    res.json(err);
   }
 });
 
