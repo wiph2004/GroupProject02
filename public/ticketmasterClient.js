@@ -1,23 +1,3 @@
-
-// $.ajax({
-//     type:"GET",
-//     url:"https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=pQXVqxhgfoGrTTOHh97c7cyLJqaE2uwK",
-//     async:true,
-//     dataType: "json",
-//     success: function(json) {
-//                 console.log(json);
-//                 // Parse the response.
-//                 // Do other things.
-//              },
-//     error: function(xhr, status, err) {
-//                 // This time, we do not end up here!
-//              }
-//   });
-
-//   $('#search-button').click(function() {
-//     fetchEventData();
-// })
-
 function fetchEventData() {
     $.ajax({
         type: "GET",
@@ -25,7 +5,6 @@ function fetchEventData() {
         async: true,
         dataType: "json",
         success: function(json) {
-            // Call a function to display the fetched information
             displayEventData(json);
         },
         error: function(xhr, status, err) {
@@ -33,24 +12,33 @@ function fetchEventData() {
         }
     });
 };
+
 // event details
 function fetchEventDetails () { 
-  $.ajax({
-    type:"GET",
-    url:"https://app.ticketmaster.com/discovery/v2/events/G5diZfkn0B-bh.json?apikey=pQXVqxhgfoGrTTOHh97c7cyLJqaE2uwK",
-    async:true,
-    dataType: "json",
-    success: function(json) {
-                console.log(json);
-                // Parse the response.
-                // Do other things.
-             },
-    error: function(xhr, status, err) {
-                // This time, we do not end up here!
-             }
-  });
-};
+    $.ajax({
+      type:"GET",
+      url:"https://app.ticketmaster.com/discovery/v2/events/G5diZfkn0B-bh.json?apikey=pQXVqxhgfoGrTTOHh97c7cyLJqaE2uwK",
+      async:true,
+      dataType: "json",
+      success: function(json) {
+                  displayEventData(json);
+                  // Parse the response.
+                  // Do other things.
+               },
+      error: function(xhr, status, err) {
+                  // This time, we do not end up here!
+               }
+    });
+  };
 
+function displayEventData(data) {
+    const eventName = data._embedded.events[0].name; // Adjust the path to the event name
+    const eventDate = data._embedded.events[0].dates.start.localDate; // Adjust the path to the event date
+
+    // Update the HTML to display the event information
+    $('#event-name').text(eventName);
+    $('#event-date').text(eventDate);
+};
   // event images 
 function fetchEventImages () {
   $.ajax({
@@ -59,9 +47,21 @@ function fetchEventImages () {
     async:true,
     dataType: "json",
     success: function(json) {
-                console.log(json);
-                // Parse the response.
-                // Do other things.
+                displayEventData(json);
+             },
+    error: function(xhr, status, err) {
+                // This time, we do not end up here!
+             }
+  });
+};
+function fetchAttractionSearch () {
+  $.ajax({
+    type:"GET",
+    url:"https://app.ticketmaster.com/discovery/v2/attractions.json?apikey=pQXVqxhgfoGrTTOHh97c7cyLJqaE2uwK",
+    async:true,
+    dataType: "json",
+    success: function(json) {
+                displayEventData(json);
              },
     error: function(xhr, status, err) {
                 // This time, we do not end up here!
@@ -76,9 +76,7 @@ function fetchAttractionSearch () {
     async:true,
     dataType: "json",
     success: function(json) {
-                console.log(json);
-                // Parse the response.
-                // Do other things.
+                displayEventData(json);
              },
     error: function(xhr, status, err) {
                 // This time, we do not end up here!
@@ -86,19 +84,14 @@ function fetchAttractionSearch () {
   });
 };
 
-function displayEventData(data) {
-    // Assuming 'data' contains the event information in JSON format
-    // You can access and display specific details from the 'data' object
-    // For example, if 'data' contains event name and date:
-    const eventName = data.name;
-    const eventDate = data.date;
 
-    // Update the HTML to display the event information
-    $('#event-name').text(eventName);
-    $('#event-date').text(eventDate);
-};
+const searchButtonElement = document.querySelector('.search-button');
+const eventNameElement = document.getElementById('event-name');
+const eventDateElement = document.getElementById('event-date');
 
-// Call the fetchEventData function when a search button is clicked or when the page loads
-$('#search-button').click(function() {
-    fetchEventData();
+searchButtonElement.addEventListener("click", function() {
+    const searchQuery = document.getElementById('query').value;
+
+    // Call the appropriate function to fetch event data based on the search query
+    fetchEventData(searchQuery);
 });
