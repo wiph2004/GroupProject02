@@ -18,5 +18,21 @@ router.get('/', async (req, res) => {
         res.status(500).send("Internal Server Error"); // Send an error response to the client
     }
 });
+// Define a function that uses the client secret key
+function useClientSecretKey(data, clientSecretKey) {
+    // Check if the client secret key matches a predefined value
+    if (clientSecretKey === process.env.CLIENT_SECRET_KEY) {
+        // Perform some action with the data using the client secret key
+        console.log("Data processed using client secret key.");
+    } else {
+        console.log("Invalid client secret key.");
+    }
+    //const data = "user input";
+    let  secretKey = {
+        //clientId: "86a17ba2ebc44d938ad1938d90f156e1",
+        consumerSecret: "A55roJhLU1K4Katw",
+        redirectUri: "https://wiph2004.github.io/GroupProject02/",
+    }
+};
 
 module.exports = router;
