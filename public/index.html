@@ -11,10 +11,11 @@
 
     <style>
       p {
-        font-size: 30px;
+        font-size: 20px;
         font-weight: bold;
         color: darkorange;
         background-color: lightpink;
+        margin: 5px;
       }
     </style>
   </head>
@@ -23,16 +24,49 @@
     <header>
       <h1>Find Your Vibe</h1>
     </header>
+   
     <main>
       <input id="query" type="text"  name="query" placeholder="Search for a song" />
       <button class="search-button" type="submit">Search</button>
-        <input type="checkbox" id="albumbox" name="album" placeholder="Album">
-        <input type="checkbox" id="artistbox" name="artist" placeholder="Artist">
-        <input type="checkbox" id="trackbox" name="track" placeholder="Track">
+     
+        <p>
+            <p class = "checkbox_item">Album</p> 
+            <input type="checkbox" id="albumbox" name="album" placeholder="Album">
+        </p>
+        <p>
+            <p class = "checkbox_item">Artist</p> 
+            <input class = "checkbox_item" type="checkbox" id="artistbox" name="artist" placeholder="Artist">
+        </p>
+        
+        <p>
+            <p class = "checkbox_item">Track</p> 
+            <input type="checkbox" id="trackbox" name="track" placeholder="Track">
+        </p>
+       
+      <p>
+        <p class = "checkbox_item">Show</p> 
         <input type="checkbox" id="showbox" name="show" placeholder="Show">
-        <input type="checkbox" id="episodebox" name="episode" placeholder="Episode">
-        <input type="checkbox" id="audiobox" name="audiobook" placeholder="audiobook">
+      </p>
+        
+      
+        <p>
+            <p class = "checkbox_item">Episode</p> 
+            <input type="checkbox" id="episodebox" name="episode" placeholder="Episode">
+        </p>
+       
+        <p>
+            <p class = "checkbox_item">Audio Book</p> 
+            <input type="checkbox" id="audiobox" name="audiobook" placeholder="audiobook">
+            <p>
+        <p class = "checkbox_item">Audio Book</p> 
+
         <button type="submit">Checkout</button>
+        
+        <p>
+            <display:inline></display:inline>
+        </p>
+        <p>Lets Find It</p>
+    
         <div id="event-details">
           <h2>Event Information</h2>
           <p>Name:<span id="event-name"></span></p>
@@ -47,6 +81,7 @@
     </main>
     <footer>
       <p>&copy; 2024 Find Your Vibe</p>
+      <div class="footer">Footer content</div>
     </footer>
 
   </body>
