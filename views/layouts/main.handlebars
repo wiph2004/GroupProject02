@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find Your Vibe</title>
+
+    <link rel="stylesheet" href=".public/style.css">
+
+    <style>
+      p {
+        font-size: 30px;
+        font-weight: bold;
+        color: darkorange;
+        background-color: lightpink;
+      }
+    </style>
+  </head>
+  <body>
+
+    <header>
+      <h1>Find Your Vibe</h1>
+    </header>
+    <main>
+      <input id="query" type="text"  name="query" placeholder="Search for a song" />
+      <button class="search-button" type="submit">Search</button>
+        <input type="checkbox" id="albumbox" name="album" placeholder="Album">
+        <input type="checkbox" id="artistbox" name="artist" placeholder="Artist">
+        <input type="checkbox" id="trackbox" name="track" placeholder="Track">
+        <input type="checkbox" id="showbox" name="show" placeholder="Show">
+        <input type="checkbox" id="episodebox" name="episode" placeholder="Episode">
+        <input type="checkbox" id="audiobox" name="audiobook" placeholder="audiobook">
+        <button type="submit">Checkout</button>
+      <div id="results">
+        <!-- Search results will be displayed here -->
+      </div>
+        <!-- Checkout button -->
+        
+
+    </main>
+    <footer>
+      <p>&copy; 2024 Find Your Vibe</p>
+    </footer>
+
+    <script src="/js/index.js"></script>
+  </body>
+</html>
