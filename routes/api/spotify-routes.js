@@ -3,6 +3,7 @@ const spotifyNodeWrapper = import("spotify-node-wrapper");
 const baseURL = "https://api.spotify.com/v1/search?market=us&q=";
 const { getAccessTokenData, getAccessToken } = require("../../utils/helpers");
 let { accessToken, accessTokenExpiry } = getAccessTokenData();
+
 router.post("/", async (req, res) => {
   try {
     if (!accessToken || Date.now() > accessTokenExpiry) {
@@ -10,9 +11,11 @@ router.post("/", async (req, res) => {
         accessToken: newAccessToken,
         accessTokenExpiry: newAccessTokenExpiry,
       } = await getAccessToken();
+
       accessToken = newAccessToken;
       accessTokenExpiry = newAccessTokenExpiry;
     }
+
     console.log("ACCESS TOKEN:", accessToken);
     const searchParams = req.body;
     console.log("SEARCH PARAMS", searchParams);

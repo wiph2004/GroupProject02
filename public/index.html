@@ -26,12 +26,17 @@
       <input id="query" type="text"  name="query" placeholder="Search for a song" />
       <button class="search-button" type="submit">Search</button>
         <input type="checkbox" id="albumbox" name="album" placeholder="Album">
-        <input type="checkbox" id="artistbox" name="artist" placeholder="Artist">
+        <label id="albumbox" for="albumbox">Album</label>
+        <input type="checkbox" id="artistbox" checked name="artist" placeholder="Artist">
+        <label id="artistbox" for="artistbox">Artist</label>
         <input type="checkbox" id="trackbox" name="track" placeholder="Track">
+        <label id="trackbox" for="trackbox">Track</label>
         <input type="checkbox" id="showbox" name="show" placeholder="Show">
+        <label id="showbox" for="showbox">Show</label>
         <input type="checkbox" id="episodebox" name="episode" placeholder="Episode">
+        <label id="episodebox" for="episodebox">Episode</label>
         <input type="checkbox" id="audiobox" name="audiobook" placeholder="audiobook">
-        <button type="submit">Checkout</button>
+        <label id="audiobox" for="audiobox">Audiobook</label>
         <div id="event-details">
           <h2>Event Information</h2>
           <p>Name:<span id="event-name"></span></p>
@@ -40,7 +45,7 @@
       <div id="results">
         <!-- Search results will be displayed here -->
       </div>
-        <!-- Checkout button -->
+      
         
 
     </main>
