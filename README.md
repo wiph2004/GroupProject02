@@ -38,4 +38,5 @@ https://bootcamp-findyourvibe-6612d7ab32fb.herokuapp.com/
 
 ## Credits
 Jon Lynch - professor
+
 Andrew Hardemon - tutor
