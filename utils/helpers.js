@@ -8,15 +8,18 @@ const getAccessToken = async () => {
   console.log("Get access Token");
 
   return new Promise(async (resolve, reject) => {
-    spotifyNodeApi = await spotifyNodeWrapper;
-    const newAccessToken = await spotifyNodeApi.getSpotifyAccessToken(
-      spotifyApiCreds.clientId,
-      spotifyApiCreds.clientSecret,
-      spotifyApiCreds.redirectUri
-    );
-    accessToken = newAccessToken;
-    accessTokenExpiry = Date.now() + 1 * 60 * 60 * 1000;
-    resolve(accessToken);
+    if (!accessToken || Date.now() > accessTokenExpiry) {
+      spotifyNodeApi = await spotifyNodeWrapper;
+      const newAccessToken = await spotifyNodeApi.getSpotifyAccessToken(
+        spotifyApiCreds.clientId,
+        spotifyApiCreds.clientSecret,
+        spotifyApiCreds.redirectUri
+      );
+      accessToken = newAccessToken;
+      accessTokenExpiry = Date.now() + 1 * 60 * 60 * 1000;
+    }
+
+    resolve({ accessToken, accessTokenExpiry });
   });
 };
 

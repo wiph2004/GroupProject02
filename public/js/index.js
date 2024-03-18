@@ -2,6 +2,8 @@ const searchBtn = document.querySelector('.search-button');
 const queryInput = document.getElementById('query');
 let checkedBoxes = [];
 
+let image;
+
 async function searchSpotify(event) {
   event.preventDefault();
 
@@ -28,23 +30,29 @@ async function searchSpotify(event) {
     const newData = parseData([data]);
     console.log("new Data ", newData);
 
-    const alternates = getAlternates(data);
-    console.log("Found Id", alternates);
-    const responseAlt = await fetch("/spotify-alternate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ alternates }),
-    });
-    const newAlternates = await responseAlt.json();
-    console.log("Alternates ", newAlternates);
+    // const alternates = getAlternates(data);
+    // console.log("Found Id", alternates);
+    // const responseAlt = await fetch("/spotify-alternate", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ alternates }),
+    // });
+    // const newAlternates = await responseAlt.json();
+    // console.log("Alternates ", newAlternates);
     
+    if(data.artists){
+      image = data.artists.items[0].images[0].url;
+    }
+    console.log(image);
     finalData = newData;//.push(newAlternates);
 
     const displayElement = document.getElementById("results");
     displayElement.innerHTML =
       "<pre>" + finalData + "</pre>";
+      const displayImage = document.getElementById("myImage");
+    displayImage.src = image;
   } catch (err) {
     console.log(err);
   }
