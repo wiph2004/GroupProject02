@@ -47,27 +47,14 @@ const withAuth = require('../utils/auth');
 // });
 
 
-router.get('/main', withAuth, async (req, res) => {
-  try {
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Project }],
-    });
-
-    const user = userData.get({ plain: true });
-
-    res.render('main', {
-      ...user,
-      logged_in: true
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
+router.get('/', async (req, res) => {
+  
+    res.render('login');
 });
 
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
-    res.redirect('/main');
+    res.redirect('/homepage');
     return;
   }
 
