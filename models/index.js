@@ -3,6 +3,7 @@ const Music = require("./music");
 const Concert = require("./concert");
 const Artist = require("./artist");
 const ArtistCategory = require("./artistCategory");
+const User = require("./user");
 
 Category.hasMany(Music, {
   foreignKey: "category_id",
@@ -22,4 +23,4 @@ Artist.belongsToMany(Category, {
   through: ArtistCategory
 });
 
-module.exports = { Category, Music, Concert, Artist };
+module.exports = { Category, Music, Concert, Artist, User };
