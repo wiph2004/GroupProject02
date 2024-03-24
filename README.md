@@ -35,6 +35,9 @@ https://bootcamp-findyourvibe-6612d7ab32fb.herokuapp.com/
 
 ![image](https://github.com/wiph2004/GroupProject02/assets/149805523/b91f989c-09f3-4e35-8b49-fc3b1b9cfb9a)
 
+https://bootcamp-findyourvibe-6612d7ab32fb.herokuapp.com/
+
+
 
 ## Credits
 Jon Lynch - professor
